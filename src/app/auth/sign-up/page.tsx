@@ -63,8 +63,8 @@ export default function SignUpPage() {
       email,
       full_name: fullName,
       company,
-      plan: "professional",
-      source: "sign-up",
+      plan_interest: "professional",
+      status: "pending",
     });
 
     setSubmitted(true);
