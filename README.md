@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NetShield DPI — Deep Packet Inspection Security Platform
 
-## Getting Started
+Enterprise deep packet inspection (DPI) with machine learning-powered threat detection, real-time analytics, and automated response. Built by **Smoke Monkey** with Next.js 16 + Supabase.
 
-First, run the development server:
+## ✨ Features
+
+- **Deep Packet Inspection (DPI)** — Layer 7 payload analysis for threat, DLP, and policy detection
+- **Real-Time Threat Detection** — ML-powered classification of malicious traffic (99.7% accuracy)
+- **Encrypted Traffic Analysis** — JA3 fingerprinting and TLS metadata inspection without decryption
+- **Protocol Analysis** — 50+ protocols decoded: HTTP/S, DNS, SMTP, FTP, SSH, SCADA/ICS
+- **Zero-Day Protection** — Behavioral baselining catches unknown threats
+- **Data Loss Prevention** — Regex/pattern DLP on packet payloads
+- **Automated Response** — Block, quarantine, ticket, or SOAR triggers
+- **SIEM Integrations** — Splunk, Elastic, Sentinel, and 40+ platforms
+
+## 🚀 Quick Start
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Configure environment
+cp .env.example .env.local
+# Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+# 3. Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🗂 Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/
+│   ├── page.tsx              # Landing page (hero, features, pricing teaser, CTA)
+│   ├── features/             # /features — full feature grid
+│   ├── solutions/            # /solutions — industry solutions
+│   ├── how-it-works/         # /how-it-works — 4-step deployment path
+│   ├── pricing/              # /pricing — 3-tier plans + FAQ
+│   ├── resources/            # /resources — docs, whitepapers, case studies
+│   ├── auth/
+│   │   ├── sign-in/          # /auth/sign-in — Supabase email+password auth
+│   │   └── sign-up/          # /auth/sign-up — signup + waitlist insert
+│   ├── dashboard/            # /dashboard — post-auth landing (protected)
+│   └── layout.tsx
+├── components/
+│   ├── navbar.tsx            # Shared sticky glass navbar (all pages)
+│   └── footer.tsx            # Shared footer (all pages)
+└── lib/supabase/client.ts    # Supabase browser client singleton
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Auth & Data
 
-## Learn More
+- **Auth**: Supabase Auth (email + password, magic confirmation email)
+- **Tables** (RLS-secured, anonymous INSERT allowed):
+  - `waitlist` — sign-up subscribers (full_name, company, email, plan)
+  - `demo_requests` — demo booking requests
+  - `contact_messages` — contact form submissions
+- **Dashboard** at `/dashboard` is protected — redirects to `/auth/sign-in` when unauthenticated.
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Layer | Tech |
+|---|---|
+| Framework | Next.js 16 (Turbopack, App Router) |
+| UI | Tailwind CSS v4 + Framer Motion |
+| Icons | Lucide React |
+| Backend | Supabase (Postgres, Auth, RLS) |
+| Deployment | Railway (see below) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚢 Deploy to Railway
 
-## Deploy on Vercel
+1. Push this repo to GitHub.
+2. In [Railway](https://railway.app), **New Project → Deploy from GitHub repo**.
+3. Add environment variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Set build command `npm run build` and start command `npm start`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Route | Description |
+|---|---|
+| `/` | Landing — hero, trusted-by, features, stats, solutions, how-it-works, pricing teaser, CTA |
+| `/features` | Full DPI feature catalog + advanced capabilities |
+| `/solutions` | 6 industry solutions (enterprise, healthcare, finance, industrial, education, government) |
+| `/how-it-works` | Deploy → Configure → Monitor → Respond + pipeline diagram |
+| `/pricing` | Community (free) / Professional / Enterprise + FAQ |
+| `/resources` | Whitepapers, docs, case studies, community links |
+| `/auth/sign-in` | Secure sign-in with show-password toggle |
+| `/auth/sign-up` | Free trial sign-up (writes to `waitlist`) |
+| `/dashboard` | Post-auth protected dashboard |
+
+---
+
+© 2026 NetShield Security. Built by **Smoke Monkey**.

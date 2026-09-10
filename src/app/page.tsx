@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Shield,
@@ -25,132 +26,11 @@ import {
   ArrowUpRight,
   Play,
 } from "lucide-react";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
-/* ──────────────────────────── NAVBAR ──────────────────────────── */
+/* ──────────────────────────── HERO SECTION ──────────────────────── */
 
-function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-
-  const links = [
-    { label: "Features", href: "#features" },
-    { label: "Solutions", href: "#solutions" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Resources", href: "#resources" },
-  ];
-
-  return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-surface-dark/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <Shield className="w-8 h-8 text-electric" />
-              <div className="absolute inset-0 w-8 h-8 bg-electric/20 blur-lg rounded-full" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-tight text-white">
-                Net<span className="text-gradient-cyan">Shield</span>
-              </span>
-              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground -mt-1">
-                DPI Security
-              </span>
-            </div>
-          </div>
-
-          {/* Desktop Links */}
-          <div className="hidden lg:flex items-center gap-1">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-white transition-colors rounded-lg hover:bg-white/5"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="#"
-              className="text-sm font-medium text-muted-foreground hover:text-white transition-colors px-4 py-2"
-            >
-              Sign In
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-electric/10 text-electric text-sm font-semibold rounded-lg border border-electric/20 hover:bg-electric/20 transition-all"
-            >
-              Start Free Trial
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-muted-foreground hover:text-white"
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-surface-dark/95 backdrop-blur-xl border-b border-white/5"
-          >
-            <div className="px-4 py-4 space-y-1">
-              {links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-medium text-muted-foreground hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-3 border-t border-white/5 flex flex-col gap-2">
-                <a href="#" className="px-4 py-2.5 text-sm text-center text-muted-foreground hover:text-white">
-                  Sign In
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-electric/10 text-electric text-sm font-semibold rounded-lg border border-electric/20"
-                >
-                  Start Free Trial
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-}
 
 /* ──────────────────────── HERO SECTION ──────────────────────── */
 
@@ -915,88 +795,6 @@ function CTASection() {
   );
 }
 
-/* ──────────────────────── FOOTER ──────────────────────── */
-
-function Footer() {
-  const columns = [
-    {
-      title: "Product",
-      links: ["Features", "Solutions", "Pricing", "Changelog", "Documentation"],
-    },
-    {
-      title: "Resources",
-      links: ["Blog", "Case Studies", "Whitepapers", "Webinars", "API Reference"],
-    },
-    {
-      title: "Company",
-      links: ["About", "Careers", "Partners", "Contact", "Press Kit"],
-    },
-    {
-      title: "Legal",
-      links: ["Privacy Policy", "Terms of Service", "Security", "Compliance"],
-    },
-  ];
-
-  return (
-    <footer className="border-t border-white/5 bg-surface-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <Shield className="w-6 h-6 text-electric" />
-              <span className="text-base font-bold text-white">
-                Net<span className="text-gradient-cyan">Shield</span>
-              </span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Enterprise deep packet inspection for modern security operations.
-            </p>
-          </div>
-
-          {/* Link columns */}
-          {columns.map((col) => (
-            <div key={col.title}>
-              <h4 className="text-sm font-semibold text-white mb-4">{col.title}</h4>
-              <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-white transition-colors"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            © 2026 NetShield Security. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            {["Twitter", "LinkedIn", "GitHub"].map((s) => (
-              <a
-                key={s}
-                href="#"
-                className="text-xs text-muted-foreground hover:text-white transition-colors"
-              >
-                {s}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-/* ──────────────────────── PAGE EXPORT ──────────────────────── */
 
 export default function Home() {
   return (
