@@ -11,7 +11,6 @@ import {
   GraduationCap,
   Server,
   ArrowRight,
-  CheckCircle2,
   Globe,
   Lock,
 } from "lucide-react";

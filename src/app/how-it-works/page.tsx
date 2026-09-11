@@ -10,7 +10,6 @@ import {
   CheckCircle2,
   Shield,
   Activity,
-  Zap,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -82,13 +81,6 @@ const colorMap: Record<string, string> = {
   success: "text-success bg-success/10 border-success/20",
   cyan: "text-cyan bg-cyan/10 border-cyan/20",
   warning: "text-warning bg-warning/10 border-warning/20",
-};
-
-const colorLineMap: Record<string, string> = {
-  electric: "bg-electric",
-  success: "bg-success",
-  cyan: "bg-cyan",
-  warning: "bg-warning",
 };
 
 export default function HowItWorksPage() {

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { startTransition, useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Shield, Menu, X, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { label: "Features", href: "/features" },
@@ -26,7 +26,9 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
+    startTransition(() => {
+      setMobileOpen(false);
+    });
   }, [pathname]);
 
   return (

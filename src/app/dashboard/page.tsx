@@ -9,7 +9,7 @@ import { Shield, LogOut, Activity, Eye, AlertTriangle } from "lucide-react";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<import("@supabase/supabase-js").User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

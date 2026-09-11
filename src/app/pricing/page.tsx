@@ -88,17 +88,6 @@ const colorMap: Record<string, string> = {
   warning: "border-warning/30",
 };
 
-const colorBgMap: Record<string, string> = {
-  electric: "bg-electric",
-  cyan: "bg-cyan",
-  warning: "bg-warning",
-};
-
-const colorTextMap: Record<string, string> = {
-  electric: "text-electric",
-  cyan: "text-cyan",
-  warning: "text-warning",
-};
 
 const colorBtnMap: Record<string, string> = {
   electric: "bg-electric/10 text-electric border-electric/20 hover:bg-electric/20",

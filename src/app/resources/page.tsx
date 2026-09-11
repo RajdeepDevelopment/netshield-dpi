@@ -3,14 +3,11 @@ import { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import {
-  ArrowRight,
   BookOpen,
   FileText,
   Video,
-  Download,
   Code,
   Users,
-  Calendar,
   ExternalLink,
 } from "lucide-react";
 
