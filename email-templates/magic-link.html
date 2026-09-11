@@ -1,0 +1,77 @@
+<!--
+  NetShield DPI — Professional Magic Link Email Template
+
+  HOW TO USE:
+  1. Dashboard → Authentication → Email Templates → Magic Link
+  2. Paste this HTML. The {{ .ConfirmationURL }} variable is the full
+     magic-link URL (token_hash + type=magiclink baked in).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in to NetShield DPI</title>
+</head>
+<body style="margin:0;padding:0;background-color:#0c1220;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#0c1220;padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background-color:#131b2e;border-radius:16px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;">
+
+          <tr>
+            <td style="padding:32px 40px 24px;text-align:center;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 20px;display:block;">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <h1 style="margin:0;font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-0.01em;">
+                Sign in to Net<span style="color:#3b82f6;">Shield</span> DPI
+              </h1>
+              <p style="margin:8px 0 0;font-size:13px;color:#64748b;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">
+                Deep Packet Inspection Security
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 40px;">
+              <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,0.3),transparent);"></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:28px 40px;">
+              <p style="margin:0 0 20px;font-size:15px;line-height:24px;color:#e2e8f0;">
+                Click the button below to securely sign in to your NetShield DPI dashboard. No password needed.
+              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+                <tr>
+                  <td>
+                    <a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:14px 36px;background-color:#3b82f6;color:#ffffff;font-size:15px;font-weight:600;text-decoration:none;border-radius:8px;">
+                      Sign In Securely
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:24px 0 0;font-size:13px;line-height:20px;color:#64748b;">
+                This link expires in 24 hours. If you did not request this, you can safely ignore this email.
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 40px 32px;">
+              <div style="height:1px;background:rgba(255,255,255,0.06);margin-bottom:24px;"></div>
+              <p style="margin:0;font-size:12px;line-height:18px;color:#475569;text-align:center;">
+                NetShield DPI · Deep Packet Inspection Security Platform<br/>
+                This is a transactional email related to your account.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

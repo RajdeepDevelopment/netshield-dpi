@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Shield,
@@ -26,7 +25,6 @@ const benefits = [
 ];
 
 export default function SignUpPage() {
-  const router = useRouter();
   const [fullName, setFullName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
@@ -49,6 +47,10 @@ export default function SignUpPage() {
           full_name: fullName,
           company,
         },
+        // Send users back to our app after they confirm their email.
+        // Use window.location.origin so it works on localhost during dev and
+        // on the deployed Vercel domain in production (no hardcoded URL).
+        emailRedirectTo: `${window.location.origin}/auth/confirm`,
       },
     });
 
@@ -58,14 +60,19 @@ export default function SignUpPage() {
       return;
     }
 
-    // Also insert into waitlist table
-    await supabase.from("waitlist").insert({
-      email,
-      full_name: fullName,
-      company,
-      plan_interest: "professional",
-      status: "pending",
-    });
+    // Best-effort waitlist entry — never block the confirmation screen if it fails.
+    try {
+      await supabase.from("waitlist").insert({
+        email,
+        full_name: fullName,
+        company,
+        plan_interest: "professional",
+        status: "pending",
+      });
+    } catch (e) {
+      // Non-fatal: auth signup already succeeded — log only.
+      console.error("Waitlist insert skipped:", e);
+    }
 
     setSubmitted(true);
     setLoading(false);

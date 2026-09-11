@@ -20,13 +20,24 @@ export default function SignInPage() {
     setLoading(true);
     setError("");
 
-    const { error: authError } = await supabase.auth.signInWithPassword({
+    const { data, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (authError) {
       setError(authError.message);
+      setLoading(false);
+      return;
+    }
+
+    // The session (access + refresh tokens) is persisted by supabase-js to
+    // localStorage under "sb-<ref>-auth-token". Verify it's actually saved
+    // before navigating, so the dashboard never boots without a logged-in state.
+    if (!data.session) {
+      setError(
+        "Signed in but no session was created. Please try again in a moment."
+      );
       setLoading(false);
       return;
     }
